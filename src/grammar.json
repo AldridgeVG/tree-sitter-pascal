@@ -534,8 +534,17 @@
           "type": "FIELD",
           "name": "iterator",
           "content": {
-            "type": "SYMBOL",
-            "name": "_expr"
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "_expr"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "varAssignDef"
+              }
+            ]
           }
         },
         {
@@ -1043,12 +1052,20 @@
           "name": "kRaise"
         },
         {
-          "type": "FIELD",
-          "name": "exception",
-          "content": {
-            "type": "SYMBOL",
-            "name": "_expr"
-          }
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "FIELD",
+              "name": "exception",
+              "content": {
+                "type": "SYMBOL",
+                "name": "_expr"
+              }
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         },
         {
           "type": "STRING",
@@ -1117,6 +1134,19 @@
             {
               "type": "SYMBOL",
               "name": "varDef"
+            },
+            {
+              "type": "STRING",
+              "value": ";"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "constDef"
             },
             {
               "type": "STRING",
@@ -1519,8 +1549,17 @@
           "type": "FIELD",
           "name": "iterator",
           "content": {
-            "type": "SYMBOL",
-            "name": "_expr"
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "_expr"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "varAssignDef"
+              }
+            ]
           }
         },
         {
@@ -2052,12 +2091,20 @@
           "name": "kRaise"
         },
         {
-          "type": "FIELD",
-          "name": "exception",
-          "content": {
-            "type": "SYMBOL",
-            "name": "_expr"
-          }
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "FIELD",
+              "name": "exception",
+              "content": {
+                "type": "SYMBOL",
+                "name": "_expr"
+              }
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         }
       ]
     },
@@ -2106,6 +2153,15 @@
             {
               "type": "SYMBOL",
               "name": "varDef"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "constDef"
             }
           ]
         },
@@ -2363,6 +2419,52 @@
         }
       ]
     },
+    "constDef": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "kConst"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "identifier"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": ":"
+                },
+                {
+                  "type": "FIELD",
+                  "name": "type",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "typeref"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "FIELD",
+          "name": "defaultValue",
+          "content": {
+            "type": "SYMBOL",
+            "name": "defaultValue"
+          }
+        }
+      ]
+    },
     "label": {
       "type": "SEQ",
       "members": [
@@ -2448,6 +2550,10 @@
           {
             "type": "SYMBOL",
             "name": "varDef"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "constDef"
           },
           {
             "type": "SYMBOL",
@@ -6775,16 +6881,29 @@
           }
         },
         {
-          "type": "STRING",
-          "value": ":"
-        },
-        {
-          "type": "FIELD",
-          "name": "type",
-          "content": {
-            "type": "SYMBOL",
-            "name": "type"
-          }
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": ":"
+                },
+                {
+                  "type": "FIELD",
+                  "name": "type",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "type"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         },
         {
           "type": "REPEAT",
@@ -9282,7 +9401,7 @@
     },
     "kSealed": {
       "type": "PATTERN",
-      "value": "seled",
+      "value": "sealed",
       "flags": "i"
     },
     "kDynamic": {
@@ -9402,7 +9521,7 @@
     },
     "kSafecall": {
       "type": "PATTERN",
-      "value": "safecal",
+      "value": "safecall",
       "flags": "i"
     },
     "kAssembler": {
@@ -9527,7 +9646,7 @@
     },
     "identifier": {
       "type": "PATTERN",
-      "value": "[&]?[a-zA-Z_]+[0-9_a-zA-Z]*"
+      "value": "[&]?[a-zA-Z_$]+[0-9_a-zA-Z$]*"
     },
     "_space": {
       "type": "PATTERN",

@@ -155,7 +155,7 @@ function statements(trailing) {
 
 		[rn('foreach'),     $ => seq(
 			$.kFor,
-			field('iterator', $._expr), $.kIn,
+			field('iterator', choice($._expr, $.varAssignDef)), $.kIn,
 			field('iterable', $._expr), $.kDo,
 			field('body', lastStatement($))
 		)],
@@ -232,7 +232,7 @@ function statements(trailing) {
 
 		[rn('raise'),       $ => seq(
 			$.kRaise,
-			field('exception', $._expr),
+			optional(field('exception', $._expr)),
 			...semicolon
 		)],
 
@@ -246,6 +246,7 @@ function statements(trailing) {
 			...semicolon,
 			seq($.assignment, ...semicolon),
 			seq($.varDef, ...semicolon),
+			seq($.constDef, ...semicolon),
 			alias($[rn('statement')], $.statement),
 			alias($[rn('if')],        $.if),
 			alias($[rn('ifElse')],    $.ifElse),
@@ -357,10 +358,13 @@ module.exports = grammar({
 				field('type', $.typeref)
 			))),
 		varDef:          $ => seq($.kVar, $.identifier, ':', field('type', $.typeref)),
+		constDef:        $ => seq($.kConst, $.identifier,
+			optional(seq(':', field('type', $.typeref))),
+			field('defaultValue', $.defaultValue)),
 		label:           $ => seq($.identifier, ':'),
 		caseLabel:       $ => seq(delimited1(choice($._expr, $.range)), ':'),
 
-		_statements:     $ => repeat1(choice($.varDef, $._statement,  $.label)),
+		_statements:     $ => repeat1(choice($.varDef, $.constDef, $._statement,  $.label)),
 		_statementsTr:   $ => seq(
 			repeat(choice($._statement, $.label)),
 			choice(tr($,'_statement'), $._statement)
@@ -814,8 +818,7 @@ module.exports = grammar({
 			$.kProperty,
 			field('name', $.identifier),
 			field('args', optional($.declPropArgs)),
-			':',
-			field('type', $.type),
+			optional(seq(':', field('type', $.type))),
 			repeat(choice(
 				seq($.kIndex, field('index', $._expr)),
 				...enable_if(delphi, seq($.kDispId, field('dispid', $._expr))),
@@ -1139,7 +1142,7 @@ module.exports = grammar({
 		kStatic:           $ => /static/i,
 		kVirtual:          $ => /virtual/i,
 		kAbstract:         $ => /abstract/i,
-		kSealed:           $ => /seled/i,
+		kSealed:           $ => /sealed/i,
 		kDynamic:          $ => /dynamic/i,
 		kOverride:         $ => /override/i,
 		kOverload:         $ => /overload/i,
@@ -1164,7 +1167,7 @@ module.exports = grammar({
 		kExport:           $ => /export/i,
 		kFar:              $ => /far/i,
 		kNear:             $ => /near/i,
-		kSafecall:         $ => /safecal/i,
+		kSafecall:         $ => /safecall/i,
 		kAssembler:        $ => /assembler/i,
 		kNostackframe:     $ => /nostackframe/i,
 		kInterrupt:        $ => /interrupt/i,
@@ -1193,7 +1196,7 @@ module.exports = grammar({
 		kIfndef:           $ => /ifndef/i,
 		kEndif:            $ => /endif/i,
 
-		identifier:        $ => /[&]?[a-zA-Z_]+[0-9_a-zA-Z]*/,
+		identifier:        $ => /[&]?[a-zA-Z_$]+[0-9_a-zA-Z$]*/,
 
 	  	_space:            $ => /[\s\r\n\t]+/,
 		pp:                $ => /\{\$[^}]*\}/,
