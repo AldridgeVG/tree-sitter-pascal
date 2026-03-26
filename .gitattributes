@@ -1,2 +1,11 @@
+# Auto-detect text files and normalise line endings to LF
+* text=auto eol=lf
+
+# Generated / vendored
 /src/** linguist-vendored
 /examples/* linguist-vendored
+
+# Binary
+*.so binary
+*.node binary
+*.a binary
