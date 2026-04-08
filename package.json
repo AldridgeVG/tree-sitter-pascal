@@ -1,39 +1,57 @@
 {
-  "name": "tree-sitter-pascal",
+  "name": "@fsdev/tree-sitter-pascal",
   "version": "0.10.2",
-  "description": "Tree sitter grammar for Pascal (Delphi, Freepascal)",
-  "main": "bindings/node",
-  "types": "bindings/node",
-  "repository": null,
-  "author": "Benjamin Gray",
-  "license": "MIT",
-  "devDependencies": {
-    "prebuildify": "^6.0.1",
-    "tree-sitter-cli": "^0.24.5"
-  },
-  "scripts": {
-    "build": "tree-sitter generate && node-gyp build",
-    "test": "tree-sitter test && tree-sitter parse examples/* --quiet --time",
-    "install": "node-gyp-build",
-    "prebuildify": "prebuildify --napi --strip"
-  },
+  "description": "Tree-sitter grammar for Pascal and its dialects (Delphi, FreePascal)",
+  "main": "bindings/node/index.js",
+  "types": "bindings/node/index.d.ts",
   "files": [
-    "grammar.js",
-    "binding.gyp",
-    "prebuilds/**",
     "bindings/node/*",
-    "queries/*",
-    "src/**"
+    "src/*.c",
+    "src/*.h",
+    "src/tree_sitter/*.h",
+    "prebuilds/**/*",
+    "binding.gyp"
   ],
+  "scripts": {
+    "generate": "tree-sitter generate",
+    "build": "node-gyp rebuild",
+    "prebuild": "prebuildify --napi --strip",
+    "install": "node-gyp-build"
+  },
   "dependencies": {
-    "node-gyp-build": "^4.8.4"
+    "node-addon-api": "^7.1.0",
+    "node-gyp-build": "^4.8.0"
+  },
+  "devDependencies": {
+    "prebuildify": "^6.0.0"
   },
   "peerDependencies": {
-    "tree-sitter": "^0.22.0"
+    "tree-sitter": "0.22.0"
   },
   "peerDependenciesMeta": {
-    "tree_sitter": {
+    "tree-sitter": {
       "optional": true
     }
-  }
+  },
+  "publishConfig": {
+    "registry": "http://nexus.fscut.com/repository/npm-dev/"
+  },
+  "tree-sitter": [
+    {
+      "scope": "source.pascal",
+      "file-types": [
+        "pas",
+        "dpr",
+        "dpk",
+        "lpr",
+        "pp"
+      ],
+      "highlights": [
+        "queries/highlights.scm"
+      ],
+      "locals": [
+        "queries/locals.scm"
+      ]
+    }
+  ]
 }
