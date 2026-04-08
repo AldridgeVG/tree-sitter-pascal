@@ -1,6 +1,6 @@
 {
   "name": "@fsdev/tree-sitter-pascal",
-  "version": "0.10.2",
+  "version": "1.0.3",
   "author": "AldridgeVG",
   "license": "MIT",
   "description": "Tree-sitter grammar for Pascal and its dialects (Delphi, FreePascal)",
