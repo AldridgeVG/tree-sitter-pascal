@@ -1,6 +1,6 @@
 {
   "name": "@fsdev/tree-sitter-pascal",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "author": "AldridgeVG",
   "license": "MIT",
   "description": "Tree-sitter grammar for Pascal and its dialects (Delphi, FreePascal)",
@@ -28,12 +28,15 @@
     "prebuildify": "^6.0.0"
   },
   "peerDependencies": {
-    "tree-sitter": "0.22.0"
+    "tree-sitter": "^0.21.0 || ^0.22.0"
   },
   "peerDependenciesMeta": {
     "tree-sitter": {
       "optional": true
     }
+  },
+  "binary": {
+    "napi_versions": [8]
   },
   "publishConfig": {
     "registry": "http://nexus.fscut.com/repository/npm-dev/"
