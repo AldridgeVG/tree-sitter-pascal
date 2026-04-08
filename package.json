@@ -1,6 +1,8 @@
 {
   "name": "@fsdev/tree-sitter-pascal",
   "version": "0.10.2",
+  "author": "AldridgeVG",
+  "license": "MIT",
   "description": "Tree-sitter grammar for Pascal and its dialects (Delphi, FreePascal)",
   "main": "bindings/node/index.js",
   "types": "bindings/node/index.d.ts",
