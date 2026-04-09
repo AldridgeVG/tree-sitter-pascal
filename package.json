@@ -27,9 +27,6 @@
   "devDependencies": {
     "prebuildify": "^6.0.0"
   },
-  "peerDependencies": {
-    "tree-sitter": "^0.21.0 || ^0.22.0"
-  },
   "peerDependenciesMeta": {
     "tree-sitter": {
       "optional": true
