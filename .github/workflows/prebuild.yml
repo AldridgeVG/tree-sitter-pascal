@@ -1,0 +1,129 @@
+name: Prebuild Binaries
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+jobs:
+  prebuild:
+    strategy:
+      matrix:
+        include:
+          # Windows
+          - os: windows-latest
+            arch: x64
+            platform: win32
+          - os: windows-latest
+            arch: arm64
+            platform: win32
+          # macOS
+          - os: macos-latest
+            arch: x64
+            platform: darwin
+          - os: macos-latest
+            arch: arm64
+            platform: darwin
+          # Linux
+          - os: ubuntu-latest
+            arch: x64
+            platform: linux
+          - os: ubuntu-latest
+            arch: arm64
+            platform: linux
+          - os: ubuntu-latest
+            arch: arm
+            platform: linux
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies (Ubuntu)
+        if: matrix.platform == 'linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gcc-aarch64-linux-gnu gcc-arm-linux-gnueabihf
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Generate parser
+        run: npx tree-sitter generate
+
+      - name: Prebuild (Windows x64)
+        if: matrix.platform == 'win32' && matrix.arch == 'x64'
+        run: npx prebuildify --napi --strip --arch=x64
+
+      - name: Prebuild (Windows arm64)
+        if: matrix.platform == 'win32' && matrix.arch == 'arm64'
+        run: npx prebuildify --napi --strip --arch=arm64
+
+      - name: Prebuild (macOS x64)
+        if: matrix.platform == 'darwin' && matrix.arch == 'x64'
+        run: npx prebuildify --napi --strip --arch=x64
+
+      - name: Prebuild (macOS arm64)
+        if: matrix.platform == 'darwin' && matrix.arch == 'arm64'
+        run: npx prebuildify --napi --strip --arch=arm64
+
+      - name: Prebuild (Linux x64)
+        if: matrix.platform == 'linux' && matrix.arch == 'x64'
+        run: npx prebuildify --napi --strip --arch=x64
+
+      - name: Prebuild (Linux arm64)
+        if: matrix.platform == 'linux' && matrix.arch == 'arm64'
+        env:
+          CC: aarch64-linux-gnu-gcc
+          CXX: aarch64-linux-gnu-g++
+        run: npx prebuildify --napi --strip --arch=arm64
+
+      - name: Prebuild (Linux arm)
+        if: matrix.platform == 'linux' && matrix.arch == 'arm'
+        env:
+          CC: arm-linux-gnueabihf-gcc
+          CXX: arm-linux-gnueabihf-g++
+        run: npx prebuildify --napi --strip --arch=arm
+
+      - name: Upload prebuilds
+        uses: actions/upload-artifact@v4
+        with:
+          name: prebuilds-${{ matrix.platform }}-${{ matrix.arch }}
+          path: prebuilds/
+
+  # Optional: Create a release and upload all prebuilds
+  release:
+    needs: prebuild
+    runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/tags/v')
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+          pattern: prebuilds-*
+
+      - name: Merge prebuilds
+        run: |
+          mkdir -p prebuilds
+          for dir in artifacts/prebuilds-*/; do
+            cp -r "$dir"* prebuilds/
+          done
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: prebuilds/**/*
+          generate_release_notes: true
