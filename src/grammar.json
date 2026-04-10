@@ -4635,6 +4635,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "literalMultilineString"
+        },
+        {
+          "type": "SYMBOL",
           "name": "literalNumber"
         },
         {
@@ -4656,6 +4660,42 @@
       "content": {
         "type": "SYMBOL",
         "name": "_literalString"
+      }
+    },
+    "literalMultilineString": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "'''"
+        },
+        {
+          "type": "PATTERN",
+          "value": "\\r?\\n"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "multilineStringContent"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": "'''"
+        }
+      ]
+    },
+    "multilineStringContent": {
+      "type": "IMMEDIATE_TOKEN",
+      "content": {
+        "type": "PATTERN",
+        "value": "(?:[^'/]|'[^']|''[^']|\\/[^/]|\\r?\\n)*"
       }
     },
     "_literalString": {
@@ -4712,6 +4752,13 @@
           "content": {
             "type": "PATTERN",
             "value": "\\$[a-fA-F0-9]+"
+          }
+        },
+        {
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "PATTERN",
+            "value": "%[01]+(_[01]+)*"
           }
         }
       ]

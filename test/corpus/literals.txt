@@ -174,3 +174,44 @@ const
           (literalNumber)
           (kAdd)
           (literalNumber))))))
+
+
+===
+Binary literals (Delphi 11)
+===
+
+const
+  a = %101;
+  b = %1111_0000;
+  c = %0;
+  d = %11111111;
+
+---
+
+(root
+  (declConsts (kConst)
+    (declConst (identifier) (defaultValue (kEq) (literalNumber)))
+    (declConst (identifier) (defaultValue (kEq) (literalNumber)))
+    (declConst (identifier) (defaultValue (kEq) (literalNumber)))
+    (declConst (identifier) (defaultValue (kEq) (literalNumber)))))
+
+
+===
+Multiline string literals (Delphi 12)
+===
+
+const
+  JsonText = '''
+{
+  "name": "test",
+  "value": 123
+}
+''';
+
+---
+
+(root
+  (declConsts (kConst)
+    (declConst (identifier)
+      (defaultValue (kEq)
+        (literalMultilineString (multilineStringContent))))))

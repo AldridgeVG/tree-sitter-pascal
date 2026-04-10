@@ -581,16 +581,25 @@ module.exports = grammar({
 
 		_literal:        $ => choice(
 			$.literalString,
+			$.literalMultilineString,
 			$.literalNumber,
 			$.kNil, $.kTrue, $.kFalse
 		),
 		literalString:   $ => repeat1($._literalString),
+		literalMultilineString: $ => seq(
+			"'''",
+			/\r?\n/,
+			optional($.multilineStringContent),
+			"'''"
+		),
+		multilineStringContent: $ => token.immediate(/(?:[^'/]|'[^']|''[^']|\/[^/]|\r?\n)*/),
 		_literalString:  $ => choice(/'[^']*'/, $.literalChar),
 		literalChar:     $ => seq('#', $._literalInt),
 		literalNumber:   $ => choice($._literalInt, $._literalFloat),
 		_literalInt:     $ => choice(
 			token.immediate(/[-+]?[0-9]+/),
-			token.immediate(/\$[a-fA-F0-9]+/)
+			token.immediate(/\$[a-fA-F0-9]+/),
+			token.immediate(/%[01]+(_[01]+)*/)
 		),
 		_literalFloat:   $ => prec(10, /[-+]?[0-9]*\.?[0-9]+(e[+-]?[0-9]+)?/),
 
