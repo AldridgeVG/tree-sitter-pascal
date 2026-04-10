@@ -89,7 +89,10 @@ jobs:
           CXX: aarch64-linux-gnu-g++
           AR: aarch64-linux-gnu-ar
           LINK: aarch64-linux-gnu-g++
-        run: npx prebuildify --napi --strip --arch=arm64
+          STRIP: aarch64-linux-gnu-strip
+        run: |
+          npx prebuildify --napi --arch=arm64
+          aarch64-linux-gnu-strip prebuilds/linux-arm64/*.node
 
       - name: Prebuild (Linux arm)
         if: matrix.platform == 'linux' && matrix.arch == 'arm'
@@ -98,7 +101,10 @@ jobs:
           CXX: arm-linux-gnueabihf-g++
           AR: arm-linux-gnueabihf-ar
           LINK: arm-linux-gnueabihf-g++
-        run: npx prebuildify --napi --strip --arch=arm
+          STRIP: arm-linux-gnueabihf-strip
+        run: |
+          npx prebuildify --napi --arch=arm
+          arm-linux-gnueabihf-strip prebuilds/linux-arm/*.node
 
       - name: Upload prebuilds
         uses: actions/upload-artifact@v4
