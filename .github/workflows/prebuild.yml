@@ -56,8 +56,11 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Install tree-sitter CLI
+        run: npm install -g tree-sitter-cli
+
       - name: Generate parser
-        run: npx tree-sitter generate
+        run: tree-sitter generate
 
       - name: Prebuild (Windows x64)
         if: matrix.platform == 'win32' && matrix.arch == 'x64'
