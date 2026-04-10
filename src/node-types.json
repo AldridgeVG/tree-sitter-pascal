@@ -6409,6 +6409,10 @@
           "named": true
         },
         {
+          "type": "kAssignWord",
+          "named": true
+        },
+        {
           "type": "kDiv",
           "named": true
         },
@@ -6425,6 +6429,10 @@
           "named": true
         },
         {
+          "type": "kFinalize",
+          "named": true
+        },
+        {
           "type": "kGt",
           "named": true
         },
@@ -6434,6 +6442,10 @@
         },
         {
           "type": "kIn",
+          "named": true
+        },
+        {
+          "type": "kInitialize",
           "named": true
         },
         {
@@ -8667,6 +8679,10 @@
     "named": true
   },
   {
+    "type": "kAssignWord",
+    "named": true
+  },
+  {
     "type": "kAt",
     "named": true
   },
@@ -8799,6 +8815,10 @@
     "named": true
   },
   {
+    "type": "kFinalize",
+    "named": true
+  },
+  {
     "type": "kFinally",
     "named": true
   },
@@ -8868,6 +8888,10 @@
   },
   {
     "type": "kInitialization",
+    "named": true
+  },
+  {
+    "type": "kInitialize",
     "named": true
   },
   {

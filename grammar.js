@@ -895,8 +895,11 @@ module.exports = grammar({
 			field('name', $._operatorName),
 			field('args', optional($.declArgs)),
 			...enable_if(fpc, field('resultName', optional($.identifier))),
-			':',
-			field('type', $.type),
+			// Managed record operators (Initialize/Finalize/Assign) have no return type
+			optional(seq(
+				':',
+				field('type', $.type)
+			)),
 			field('assign', optional($.defaultValue)),
 			';',
 			repeat($._procAttributeNoExt)
@@ -918,6 +921,8 @@ module.exports = grammar({
 			$.kAssign,
 			$.kOr, $.kXor, $.kAnd, $.kShl, $.kShr, $.kNot,
 			$.kIn,
+			// Managed record operators (Delphi 10.4+)
+			$.kInitialize, $.kFinalize, $.kAssignWord,
 		),
 
 		declArgs:        $ => seq('(', delimited($.declArg, ';'), ')'),
@@ -1111,6 +1116,9 @@ module.exports = grammar({
 		kIs:               $ => /is/i,
 		kAs:               $ => /as/i,
 		kIn:               $ => /in/i,
+		kInitialize:       $ => /initialize/i,
+		kFinalize:         $ => /finalize/i,
+		kAssignWord:       $ => /assign/i,
 
 		kFor:              $ => /for/i,
 		kTo:               $ => /to/i,

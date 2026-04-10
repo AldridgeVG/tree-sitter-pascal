@@ -7678,16 +7678,29 @@
           }
         },
         {
-          "type": "STRING",
-          "value": ":"
-        },
-        {
-          "type": "FIELD",
-          "name": "type",
-          "content": {
-            "type": "SYMBOL",
-            "name": "type"
-          }
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": ":"
+                },
+                {
+                  "type": "FIELD",
+                  "name": "type",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "type"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         },
         {
           "type": "FIELD",
@@ -7864,6 +7877,18 @@
         {
           "type": "SYMBOL",
           "name": "kIn"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "kInitialize"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "kFinalize"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "kAssignWord"
         }
       ]
     },
@@ -9269,6 +9294,21 @@
     "kIn": {
       "type": "PATTERN",
       "value": "in",
+      "flags": "i"
+    },
+    "kInitialize": {
+      "type": "PATTERN",
+      "value": "initialize",
+      "flags": "i"
+    },
+    "kFinalize": {
+      "type": "PATTERN",
+      "value": "finalize",
+      "flags": "i"
+    },
+    "kAssignWord": {
+      "type": "PATTERN",
+      "value": "assign",
       "flags": "i"
     },
     "kFor": {

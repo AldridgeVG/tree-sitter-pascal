@@ -723,3 +723,32 @@ end;
     (block
       (kBegin)
       (kEnd))))
+
+===
+Managed records (Delphi 10.4+)
+===
+
+type
+  TMyRecord = record
+    class operator Initialize(var Rec: TMyRecord);
+    class operator Finalize(var Rec: TMyRecord);
+    class operator Assign(var Dest: TMyRecord; const Src: TMyRecord);
+  end;
+
+---
+
+(root
+  (declTypes (kType)
+    (declType (identifier) (kEq)
+      (declClass (kRecord)
+        (declProc (kClass) (kOperator) (operatorName (kInitialize))
+          (declArgs
+            (declArg (kVar) (identifier) (type (typeref (identifier))))))
+        (declProc (kClass) (kOperator) (operatorName (kFinalize))
+          (declArgs
+            (declArg (kVar) (identifier) (type (typeref (identifier))))))
+        (declProc (kClass) (kOperator) (operatorName (kAssignWord))
+          (declArgs
+            (declArg (kVar) (identifier) (type (typeref (identifier))))
+            (declArg (kConst) (identifier) (type (typeref (identifier))))))
+        (kEnd)))))
