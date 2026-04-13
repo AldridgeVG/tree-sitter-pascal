@@ -72,6 +72,10 @@
           "named": true
         },
         {
+          "type": "literalMultilineString",
+          "named": true
+        },
+        {
           "type": "literalNumber",
           "named": true
         },
@@ -193,6 +197,10 @@
             "named": true
           },
           {
+            "type": "literalMultilineString",
+            "named": true
+          },
+          {
             "type": "literalNumber",
             "named": true
           },
@@ -294,6 +302,10 @@
           },
           {
             "type": "lambda",
+            "named": true
+          },
+          {
+            "type": "literalMultilineString",
             "named": true
           },
           {
@@ -623,6 +635,10 @@
           "named": true
         },
         {
+          "type": "literalMultilineString",
+          "named": true
+        },
+        {
           "type": "literalNumber",
           "named": true
         },
@@ -821,6 +837,10 @@
         },
         {
           "type": "lambda",
+          "named": true
+        },
+        {
+          "type": "literalMultilineString",
           "named": true
         },
         {
@@ -1036,6 +1056,10 @@
           "named": true
         },
         {
+          "type": "literalMultilineString",
+          "named": true
+        },
+        {
           "type": "literalNumber",
           "named": true
         },
@@ -1223,6 +1247,10 @@
         },
         {
           "type": "lambda",
+          "named": true
+        },
+        {
+          "type": "literalMultilineString",
           "named": true
         },
         {
@@ -1446,6 +1474,10 @@
         },
         {
           "type": "lambda",
+          "named": true
+        },
+        {
+          "type": "literalMultilineString",
           "named": true
         },
         {
@@ -2076,6 +2108,10 @@
             "named": true
           },
           {
+            "type": "literalMultilineString",
+            "named": true
+          },
+          {
             "type": "literalNumber",
             "named": true
           },
@@ -2147,6 +2183,10 @@
           },
           {
             "type": "lambda",
+            "named": true
+          },
+          {
+            "type": "literalMultilineString",
             "named": true
           },
           {
@@ -2238,6 +2278,10 @@
             "named": true
           },
           {
+            "type": "literalMultilineString",
+            "named": true
+          },
+          {
             "type": "literalNumber",
             "named": true
           },
@@ -2309,6 +2353,10 @@
           },
           {
             "type": "lambda",
+            "named": true
+          },
+          {
+            "type": "literalMultilineString",
             "named": true
           },
           {
@@ -2403,6 +2451,10 @@
           },
           {
             "type": "lambda",
+            "named": true
+          },
+          {
+            "type": "literalMultilineString",
             "named": true
           },
           {
@@ -2648,6 +2700,10 @@
         },
         {
           "type": "lambda",
+          "named": true
+        },
+        {
+          "type": "literalMultilineString",
           "named": true
         },
         {
@@ -2900,6 +2956,10 @@
         },
         {
           "type": "lambda",
+          "named": true
+        },
+        {
+          "type": "literalMultilineString",
           "named": true
         },
         {
@@ -3175,6 +3235,10 @@
         },
         {
           "type": "lambda",
+          "named": true
+        },
+        {
+          "type": "literalMultilineString",
           "named": true
         },
         {
@@ -3470,6 +3534,10 @@
           "named": true
         },
         {
+          "type": "literalMultilineString",
+          "named": true
+        },
+        {
           "type": "literalNumber",
           "named": true
         },
@@ -3546,6 +3614,10 @@
           },
           {
             "type": "lambda",
+            "named": true
+          },
+          {
+            "type": "literalMultilineString",
             "named": true
           },
           {
@@ -3709,6 +3781,10 @@
             "named": true
           },
           {
+            "type": "literalMultilineString",
+            "named": true
+          },
+          {
             "type": "literalNumber",
             "named": true
           },
@@ -3786,6 +3862,10 @@
         },
         {
           "type": "lambda",
+          "named": true
+        },
+        {
+          "type": "literalMultilineString",
           "named": true
         },
         {
@@ -3882,6 +3962,10 @@
             "named": true
           },
           {
+            "type": "literalMultilineString",
+            "named": true
+          },
+          {
             "type": "literalNumber",
             "named": true
           },
@@ -3959,6 +4043,10 @@
           },
           {
             "type": "lambda",
+            "named": true
+          },
+          {
+            "type": "literalMultilineString",
             "named": true
           },
           {
@@ -4046,6 +4134,10 @@
             "named": true
           },
           {
+            "type": "literalMultilineString",
+            "named": true
+          },
+          {
             "type": "literalNumber",
             "named": true
           },
@@ -4123,6 +4215,10 @@
         },
         {
           "type": "lambda",
+          "named": true
+        },
+        {
+          "type": "literalMultilineString",
           "named": true
         },
         {
@@ -4215,6 +4311,10 @@
             "named": true
           },
           {
+            "type": "literalMultilineString",
+            "named": true
+          },
+          {
             "type": "literalNumber",
             "named": true
           },
@@ -4299,6 +4399,10 @@
             "named": true
           },
           {
+            "type": "literalMultilineString",
+            "named": true
+          },
+          {
             "type": "literalNumber",
             "named": true
           },
@@ -4370,6 +4474,10 @@
           },
           {
             "type": "lambda",
+            "named": true
+          },
+          {
+            "type": "literalMultilineString",
             "named": true
           },
           {
@@ -4464,6 +4572,10 @@
           },
           {
             "type": "lambda",
+            "named": true
+          },
+          {
+            "type": "literalMultilineString",
             "named": true
           },
           {
@@ -4738,6 +4850,10 @@
             "named": true
           },
           {
+            "type": "literalMultilineString",
+            "named": true
+          },
+          {
             "type": "literalNumber",
             "named": true
           },
@@ -4928,6 +5044,10 @@
             "named": true
           },
           {
+            "type": "literalMultilineString",
+            "named": true
+          },
+          {
             "type": "literalNumber",
             "named": true
           },
@@ -4999,6 +5119,10 @@
           },
           {
             "type": "lambda",
+            "named": true
+          },
+          {
+            "type": "literalMultilineString",
             "named": true
           },
           {
@@ -5286,6 +5410,10 @@
           "named": true
         },
         {
+          "type": "literalMultilineString",
+          "named": true
+        },
+        {
           "type": "literalNumber",
           "named": true
         },
@@ -5362,6 +5490,10 @@
           },
           {
             "type": "lambda",
+            "named": true
+          },
+          {
+            "type": "literalMultilineString",
             "named": true
           },
           {
@@ -5534,6 +5666,10 @@
           },
           {
             "type": "lambda",
+            "named": true
+          },
+          {
+            "type": "literalMultilineString",
             "named": true
           },
           {
@@ -6112,6 +6248,10 @@
           "named": true
         },
         {
+          "type": "literalMultilineString",
+          "named": true
+        },
+        {
           "type": "literalNumber",
           "named": true
         },
@@ -6195,6 +6335,21 @@
     "fields": {}
   },
   {
+    "type": "literalMultilineString",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "multilineStringContent",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "literalNumber",
     "named": true,
     "fields": {}
@@ -6254,6 +6409,10 @@
           "named": true
         },
         {
+          "type": "kAssignWord",
+          "named": true
+        },
+        {
           "type": "kDiv",
           "named": true
         },
@@ -6270,6 +6429,10 @@
           "named": true
         },
         {
+          "type": "kFinalize",
+          "named": true
+        },
+        {
           "type": "kGt",
           "named": true
         },
@@ -6279,6 +6442,10 @@
         },
         {
           "type": "kIn",
+          "named": true
+        },
+        {
+          "type": "kInitialize",
           "named": true
         },
         {
@@ -6398,6 +6565,10 @@
           },
           {
             "type": "lambda",
+            "named": true
+          },
+          {
+            "type": "literalMultilineString",
             "named": true
           },
           {
@@ -6656,6 +6827,10 @@
           "named": true
         },
         {
+          "type": "literalMultilineString",
+          "named": true
+        },
+        {
           "type": "literalNumber",
           "named": true
         },
@@ -6748,6 +6923,10 @@
         },
         {
           "type": "lambda",
+          "named": true
+        },
+        {
+          "type": "literalMultilineString",
           "named": true
         },
         {
@@ -6893,6 +7072,10 @@
             "named": true
           },
           {
+            "type": "literalMultilineString",
+            "named": true
+          },
+          {
             "type": "literalNumber",
             "named": true
           },
@@ -6980,6 +7163,10 @@
         },
         {
           "type": "lambda",
+          "named": true
+        },
+        {
+          "type": "literalMultilineString",
           "named": true
         },
         {
@@ -7091,6 +7278,10 @@
             "named": true
           },
           {
+            "type": "literalMultilineString",
+            "named": true
+          },
+          {
             "type": "literalNumber",
             "named": true
           },
@@ -7182,6 +7373,10 @@
           },
           {
             "type": "lambda",
+            "named": true
+          },
+          {
+            "type": "literalMultilineString",
             "named": true
           },
           {
@@ -7339,6 +7534,10 @@
           "named": true
         },
         {
+          "type": "literalMultilineString",
+          "named": true
+        },
+        {
           "type": "literalNumber",
           "named": true
         },
@@ -7415,6 +7614,10 @@
         },
         {
           "type": "lambda",
+          "named": true
+        },
+        {
+          "type": "literalMultilineString",
           "named": true
         },
         {
@@ -7705,6 +7908,10 @@
         },
         {
           "type": "lambda",
+          "named": true
+        },
+        {
+          "type": "literalMultilineString",
           "named": true
         },
         {
@@ -8157,6 +8364,10 @@
             "named": true
           },
           {
+            "type": "literalMultilineString",
+            "named": true
+          },
+          {
             "type": "literalNumber",
             "named": true
           },
@@ -8329,6 +8540,10 @@
             "named": true
           },
           {
+            "type": "literalMultilineString",
+            "named": true
+          },
+          {
             "type": "literalNumber",
             "named": true
           },
@@ -8356,6 +8571,10 @@
   },
   {
     "type": "#",
+    "named": false
+  },
+  {
+    "type": "'''",
     "named": false
   },
   {
@@ -8457,6 +8676,10 @@
   },
   {
     "type": "kAssignSub",
+    "named": true
+  },
+  {
+    "type": "kAssignWord",
     "named": true
   },
   {
@@ -8592,6 +8815,10 @@
     "named": true
   },
   {
+    "type": "kFinalize",
+    "named": true
+  },
+  {
     "type": "kFinally",
     "named": true
   },
@@ -8661,6 +8888,10 @@
   },
   {
     "type": "kInitialization",
+    "named": true
+  },
+  {
+    "type": "kInitialize",
     "named": true
   },
   {
@@ -9021,6 +9252,10 @@
   },
   {
     "type": "kXor",
+    "named": true
+  },
+  {
+    "type": "multilineStringContent",
     "named": true
   },
   {

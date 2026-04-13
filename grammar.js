@@ -581,16 +581,25 @@ module.exports = grammar({
 
 		_literal:        $ => choice(
 			$.literalString,
+			$.literalMultilineString,
 			$.literalNumber,
 			$.kNil, $.kTrue, $.kFalse
 		),
 		literalString:   $ => repeat1($._literalString),
+		literalMultilineString: $ => seq(
+			"'''",
+			/\r?\n/,
+			optional($.multilineStringContent),
+			"'''"
+		),
+		multilineStringContent: $ => token.immediate(/(?:[^'/]|'[^']|''[^']|\/[^/]|\r?\n)*/),
 		_literalString:  $ => choice(/'[^']*'/, $.literalChar),
 		literalChar:     $ => seq('#', $._literalInt),
 		literalNumber:   $ => choice($._literalInt, $._literalFloat),
 		_literalInt:     $ => choice(
 			token.immediate(/[-+]?[0-9]+/),
-			token.immediate(/\$[a-fA-F0-9]+/)
+			token.immediate(/\$[a-fA-F0-9]+/),
+			token.immediate(/%[01]+(_[01]+)*/)
 		),
 		_literalFloat:   $ => prec(10, /[-+]?[0-9]*\.?[0-9]+(e[+-]?[0-9]+)?/),
 
@@ -886,8 +895,11 @@ module.exports = grammar({
 			field('name', $._operatorName),
 			field('args', optional($.declArgs)),
 			...enable_if(fpc, field('resultName', optional($.identifier))),
-			':',
-			field('type', $.type),
+			// Managed record operators (Initialize/Finalize/Assign) have no return type
+			optional(seq(
+				':',
+				field('type', $.type)
+			)),
 			field('assign', optional($.defaultValue)),
 			';',
 			repeat($._procAttributeNoExt)
@@ -909,6 +921,8 @@ module.exports = grammar({
 			$.kAssign,
 			$.kOr, $.kXor, $.kAnd, $.kShl, $.kShr, $.kNot,
 			$.kIn,
+			// Managed record operators (Delphi 10.4+)
+			$.kInitialize, $.kFinalize, $.kAssignWord,
 		),
 
 		declArgs:        $ => seq('(', delimited($.declArg, ';'), ')'),
@@ -1102,6 +1116,9 @@ module.exports = grammar({
 		kIs:               $ => /is/i,
 		kAs:               $ => /as/i,
 		kIn:               $ => /in/i,
+		kInitialize:       $ => /initialize/i,
+		kFinalize:         $ => /finalize/i,
+		kAssignWord:       $ => /assign/i,
 
 		kFor:              $ => /for/i,
 		kTo:               $ => /to/i,
