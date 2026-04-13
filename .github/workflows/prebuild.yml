@@ -64,23 +64,23 @@ jobs:
 
       - name: Prebuild (Windows x64)
         if: matrix.platform == 'win32' && matrix.arch == 'x64'
-        run: npx prebuildify --napi --strip --arch=x64
+        run: npx prebuildify --napi --strip --arch=x64 --platform=win32
 
       - name: Prebuild (Windows arm64)
         if: matrix.platform == 'win32' && matrix.arch == 'arm64'
-        run: npx prebuildify --napi --strip --arch=arm64
+        run: npx prebuildify --napi --strip --arch=arm64 --platform=win32
 
       - name: Prebuild (macOS x64)
         if: matrix.platform == 'darwin' && matrix.arch == 'x64'
-        run: npx prebuildify --napi --strip --arch=x64
+        run: npx prebuildify --napi --strip --arch=x64 --platform=darwin
 
       - name: Prebuild (macOS arm64)
         if: matrix.platform == 'darwin' && matrix.arch == 'arm64'
-        run: npx prebuildify --napi --strip --arch=arm64
+        run: npx prebuildify --napi --strip --arch=arm64 --platform=darwin
 
       - name: Prebuild (Linux x64)
         if: matrix.platform == 'linux' && matrix.arch == 'x64'
-        run: npx prebuildify --napi --strip --arch=x64
+        run: npx prebuildify --napi --strip --arch=x64 --platform=linux
 
       - name: Prebuild (Linux arm64)
         if: matrix.platform == 'linux' && matrix.arch == 'arm64'
@@ -91,7 +91,7 @@ jobs:
           LINK: aarch64-linux-gnu-g++
           STRIP: aarch64-linux-gnu-strip
         run: |
-          npx prebuildify --napi --arch=arm64
+          npx prebuildify --napi --arch=arm64 --platform=linux
           aarch64-linux-gnu-strip prebuilds/linux-arm64/*.node
 
       - name: Prebuild (Linux arm)
@@ -103,7 +103,7 @@ jobs:
           LINK: arm-linux-gnueabihf-g++
           STRIP: arm-linux-gnueabihf-strip
         run: |
-          npx prebuildify --napi --arch=arm
+          npx prebuildify --napi --arch=arm --platform=linux
           arm-linux-gnueabihf-strip prebuilds/linux-arm/*.node
 
       - name: Upload prebuilds
